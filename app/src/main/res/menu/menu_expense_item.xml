@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_action_search_in_expense_items"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/str_search_lbl"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_action_show_by_category"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="@string/str_show_items_by_category_lbl"
+        app:showAsAction="ifRoom" />
+
+</menu>

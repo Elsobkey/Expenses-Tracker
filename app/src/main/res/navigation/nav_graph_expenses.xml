@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@+id/frag_expenses">
+
+    <fragment
+        android:id="@+id/frag_expenses"
+        android:name="com.sobky.expensestracking.ExpensesFragment"
+        android:label="@string/title_expenses"
+        tools:layout="@layout/fragment_expenses">
+
+        <action
+            android:id="@+id/action_expenses_frag_to_expense_items_frag"
+            app:destination="@id/expenseItemsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/expenseItemInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/expenseItemsFragment"
+        android:name="com.sobky.expensestracking.ExpenseItemsFragment"
+        android:label="@string/title_expense_items"
+        tools:layout="@layout/fragment_expense_items">
+        <action
+            android:id="@+id/action_expense_item_fragment_to_expense_item_info_fragment"
+            app:destination="@id/expenseItemInfoFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/expenseItemInfoFragment" />
+
+        <argument
+            android:name="expense_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+        <argument
+            android:name="expense_title"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/expenseItemInfoFragment"
+        android:name="com.sobky.expensestracking.ExpenseItemInfoFragment"
+        android:label="@string/title_expense_item_info"
+        tools:layout="@layout/fragment_expense_item_info">
+
+        <argument
+            android:name="expense_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <argument
+            android:name="expense_item_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
+</navigation>

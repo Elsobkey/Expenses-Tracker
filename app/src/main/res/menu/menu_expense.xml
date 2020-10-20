@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_action_more_option"
+        android:title="@string/str_add_new_expense_lbl"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_action_settings"
+        android:title="@string/str_settings_lbl"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_action_more_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/str_search_lbl"
+        app:showAsAction="ifRoom" />
+</menu>

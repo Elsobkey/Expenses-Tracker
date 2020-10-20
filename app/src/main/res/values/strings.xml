@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Expenses Tracker</string>
+    <string name="splash_welcome_message">Expenses Tracker…</string>
+    <string name="title_activity_home">MainActivity</string>
+
+    <!-- Navigation menu titles...-->
+    <string name="title_expenses">Expenses</string>
+    <string name="title_expense_items">Expense Items</string>
+    <string name="title_expense_item_info">Expense Item Info</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_dlg_expense_title_lbl">Title here</string>
+    <string name="str_dlg_submit_lbl">Submit</string>
+    <string name="str_dlg_dismiss_lbl">Dismiss</string>
+    <string name="title_here_hint">add title…</string>
+    <string name="str_hint_title">item title…</string>
+    <string name="str_hint_price">price…</string>
+    <string name="str_hint_amount">amount…</string>
+    <string name="str_hint_description">description</string>
+    <string name="str_hint_market_name">market…</string>
+    <string name="str_hint_market_address">market address…</string>
+
+    <!--labels...-->
+    <string name="str_title_lbl">Item title</string>
+    <string name="str_amount_lbl">Amount</string>
+    <string name="str_price_lbl">Price</string>
+    <string name="str_category_lbl">Category</string>
+    <string name="str_description_lbl">Description</string>
+    <string name="str_market_lbl">Market</string>
+    <string name="str_market_address_lbl">Market Address</string>
+    <string name="str_market_coordinates_lbl">Market Coordinates</string>
+    <string name="str_created_date_lbl">Created Date</string>
+    <string name="str_created_time_lbl">Created Time</string>
+    <string name="lat_lng_dash">30.2588,31.025987445</string>
+    <string name="date_dash">10/05/2020</string>
+    <string name="str_saved_automatically">Changes will saved automatically</string>
+
+    <string name="str_more_options_lbl">More options</string>
+    <string name="str_settings_lbl">Settings</string>
+    <string name="str_search_lbl">Search</string>
+    <string name="str_add_new_expense_lbl">New expense</string>
+    <string name="str_add_new_expense_item_lbl">New expense item</string>
+    <string name="str_show_items_by_category_lbl">Show by Category</string>
+</resources>

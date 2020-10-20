@@ -1,0 +1,303 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sobky.expensestracking.viewmodels.ExpenseItemInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_expense_item_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view_expense_item_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:background="@color/color_white"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_saved_automatically"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_title"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/str_title_lbl"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textMultiLine|textNoSuggestions"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseItem.expenseName}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_amount_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseItem.amount}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_price"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_price_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_category"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_amount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseItem.price}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_category"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_category_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_price">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spinner_expense_item_info_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:inputType="none"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_description_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_market"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_category">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:inputType="text|textMultiLine|textNoSuggestions"
+                        android:maxLines="10"
+                        android:minLines="1"
+                        android:padding="8dp"
+                        android:text="@{viewModel.expenseItem.description}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_market"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_market_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_market_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_place_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textNoSuggestions"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseItem.placeName}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tv_expense_item_info_market_address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_market_address_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/layout_expense_item_info_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_market">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expense_item_info_place_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textMultiLine|textNoSuggestions"
+                        android:padding="10dp"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:text="@{viewModel.expenseItem.placeAddress}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/tv_expense_item_info_market_coordinates_lbl"-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:hint="@string/str_market_coordinates_lbl"-->
+<!--                    android:textColor="@color/color_black"-->
+<!--                    android:textSize="15sp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/layout_expense_item_info_date"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_market_address">-->
+
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/tv_expense_item_info_lat_lng"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="@{Double.toString(viewModel.expenseItem.lat) + `, `+Double.toString(viewModel.expenseItem.lng) }" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_expense_item_info_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_created_date_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@id/layout_expense_item_info_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_market_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_expense_item_info_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseDateString()}"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="textNoSuggestions"
+                        android:focusableInTouchMode="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_expense_item_info_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/str_created_time_lbl"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_expense_item_info_date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_expense_item_info_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseTimeString()}"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="textNoSuggestions"
+                        android:focusableInTouchMode="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/tv_expense_item_info_saved_automatically"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="5dp"
+            android:text="@string/str_saved_automatically"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
