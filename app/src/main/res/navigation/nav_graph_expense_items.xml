@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/expenseItemsFragment"
-        android:name="com.sobky.expensestracking.ExpenseItemsFragment"
+        android:name="com.sobky.expensestracking.ui.expenseitem.ExpenseItemsFragment"
         android:label="ExpenseItemsFragment"
         tools:layout="@layout/fragment_expense_items">
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/expenseItemInfoFragment"
-        android:name="com.sobky.expensestracking.ExpenseItemInfoFragment"
+        android:name="com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoFragment"
         android:label="ExpenseItemInfoFragment"
         tools:layout="@layout/fragment_expense_item_info">
 

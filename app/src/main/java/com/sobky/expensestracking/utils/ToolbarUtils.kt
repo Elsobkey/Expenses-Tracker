@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.util
+package com.sobky.expensestracking.utils
 
 import android.app.Activity
 import android.content.Context

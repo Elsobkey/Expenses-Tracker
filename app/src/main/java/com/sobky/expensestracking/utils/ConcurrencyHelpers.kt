@@ -1,5 +1,5 @@
 /*https://medium.com/androiddevelopers/coroutines-on-android-part-iii-real-work-2ba8a2ec2f45*/
-package com.sobky.expensestracking.util
+package com.sobky.expensestracking.utils
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.CoroutineStart.LAZY

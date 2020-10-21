@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.viewmodels
+package com.sobky.expensestracking.ui.expenseitem
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -6,25 +6,21 @@ import com.sobky.expensestracking.data.repository.CategoryRepository
 import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
 
 /**
- * Factory for creating a [ExpenseItemInfoViewModel] with a constructor that takes a
+ * Factory for creating a [ExpenseItemsViewModel] with a constructor that takes a
  * no parameters for now.
  */
-class ExpenseItemInfoViewModelFactory(
-    private var expenseId: Long,
-    var expenseItemId: Long,
+class ExpenseItemsViewModelFactory(
+    val expenseId: Long,
     private val repository: ExpenseItemsRepository,
     private val categoryRepository: CategoryRepository
-) :
-    ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ExpenseItemInfoViewModel(
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return ExpenseItemsViewModel(
             expenseId,
-            expenseItemId,
             repository,
             categoryRepository
         ) as T
     }
-
 }

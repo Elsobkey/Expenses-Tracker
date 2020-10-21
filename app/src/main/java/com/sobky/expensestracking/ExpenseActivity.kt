@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.sobky.expensestracking.databinding.ActivityExpenseBinding
-import com.sobky.expensestracking.util.updateStatusBarColor
+import com.sobky.expensestracking.utils.updateStatusBarColor
 
 class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
 

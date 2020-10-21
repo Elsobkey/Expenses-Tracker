@@ -14,14 +14,12 @@
 
         <variable
             name="expenseItemViewModel"
-            type="com.sobky.expensestracking.viewmodels.ExpenseItemsViewModel" />
+            type="com.sobky.expensestracking.ui.expenseitem.ExpenseItemsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_edit_text"
         android:onClick="@{clickListener}"

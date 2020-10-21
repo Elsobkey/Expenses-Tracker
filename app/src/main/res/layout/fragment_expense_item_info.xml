@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sobky.expensestracking.viewmodels.ExpenseItemInfoViewModel" />
+            type="com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/str_title_lbl"
+                    android:hint="@string/str_item_title_lbl"
                     app:layout_constraintBottom_toTopOf="@id/tv_expense_item_info_amount"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/frag_expenses"
-        android:name="com.sobky.expensestracking.ExpensesFragment"
+        android:name="com.sobky.expensestracking.ui.expense.ExpensesFragment"
         android:label="@string/title_expenses"
         tools:layout="@layout/fragment_expenses">
 
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/expenseItemsFragment"
-        android:name="com.sobky.expensestracking.ExpenseItemsFragment"
+        android:name="com.sobky.expensestracking.ui.expenseitem.ExpenseItemsFragment"
         android:label="@string/title_expense_items"
         tools:layout="@layout/fragment_expense_items">
         <action
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/expenseItemInfoFragment"
-        android:name="com.sobky.expensestracking.ExpenseItemInfoFragment"
+        android:name="com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoFragment"
         android:label="@string/title_expense_item_info"
         tools:layout="@layout/fragment_expense_item_info">
 

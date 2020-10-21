@@ -1,4 +1,4 @@
-package com.sobky.expensestracking
+package com.sobky.expensestracking.ui.expense
 
 //import androidx.lifecycle.observe
 import android.content.DialogInterface
@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.sobky.expensestracking.adapters.ExpensesAdapter
+import com.sobky.expensestracking.ExpenseActivity
+import com.sobky.expensestracking.R
 import com.sobky.expensestracking.databinding.DialogTitleViewBinding
 import com.sobky.expensestracking.databinding.FragmentExpensesBinding
-import com.sobky.expensestracking.util.InjectorUtils
-import com.sobky.expensestracking.viewmodels.ExpensesViewModel
+import com.sobky.expensestracking.utils.InjectorUtils
 
 class ExpensesFragment : Fragment(), View.OnClickListener {
 
@@ -59,7 +60,10 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if ((v == (binding.fabAddNewExpense))) {
-            showExpenseTitleDialog()
+            //showExpenseTitleDialog()
+            val direction = ExpensesFragmentDirections.actionExpensesFragToExpenseItemsFrag(expenseId = 0,expenseTitle = "")
+            findNavController().navigate(direction)
+
         }
     }
 

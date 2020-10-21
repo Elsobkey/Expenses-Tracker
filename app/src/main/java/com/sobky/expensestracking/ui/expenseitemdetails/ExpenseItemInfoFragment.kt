@@ -1,9 +1,8 @@
-package com.sobky.expensestracking
+package com.sobky.expensestracking.ui.expenseitemdetails
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -16,15 +15,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.sobky.expensestracking.ExpenseActivity
+import com.sobky.expensestracking.R
 import com.sobky.expensestracking.data.db.entity.Category
 import com.sobky.expensestracking.databinding.FragmentExpenseItemInfoBinding
-import com.sobky.expensestracking.util.InjectorUtils
-import com.sobky.expensestracking.viewmodels.ExpenseItemInfoViewModel
+import com.sobky.expensestracking.utils.InjectorUtils
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import java.util.*
 
 
@@ -233,7 +229,6 @@ class ExpenseItemInfoFragment : Fragment() {
         )
         datePickerDialog.show()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

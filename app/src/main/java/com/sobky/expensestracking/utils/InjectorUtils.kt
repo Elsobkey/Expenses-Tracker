@@ -1,13 +1,13 @@
-package com.sobky.expensestracking.util
+package com.sobky.expensestracking.utils
 
 import android.content.Context
 import com.sobky.expensestracking.data.repository.CategoryRepository
 import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
 import com.sobky.expensestracking.data.repository.ExpensesRepository
 import com.sobky.expensestracking.data.db.AppDatabase
-import com.sobky.expensestracking.viewmodels.ExpenseItemInfoViewModelFactory
-import com.sobky.expensestracking.viewmodels.ExpenseItemsViewModelFactory
-import com.sobky.expensestracking.viewmodels.ExpensesViewModelFactory
+import com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModelFactory
+import com.sobky.expensestracking.ui.expenseitem.ExpenseItemsViewModelFactory
+import com.sobky.expensestracking.ui.expense.ExpensesViewModelFactory
 
 
 /**

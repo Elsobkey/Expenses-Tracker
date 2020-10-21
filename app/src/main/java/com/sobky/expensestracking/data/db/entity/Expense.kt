@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "Expense")
 data class Expense(
-    @ColumnInfo(name = "expensesTitle") val expensesTitle: String = "",
+    @ColumnInfo(name = "expensesTitle") var expensesTitle: String = "",
     @ColumnInfo(name = "expensesDate") val expensesDate: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "userId") val userId: String = "154887" //TODO
 ) {

@@ -7,8 +7,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.sobky.expensestracking.util.updateStatusBarColor
-import com.sobky.expensestracking.workers.DeleteExpenseItemWorker
+import com.sobky.expensestracking.utils.updateStatusBarColor
+import com.sobky.expensestracking.worker.DeleteExpenseItemWorker
 
 class SplashActivity : AppCompatActivity() {
 

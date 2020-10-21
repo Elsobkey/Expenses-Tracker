@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.adapters
+package com.sobky.expensestracking.ui.expense
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sobky.expensestracking.ExpensesFragmentDirections
 import com.sobky.expensestracking.data.db.relation.ExpenseAndExpenseItems
 import com.sobky.expensestracking.databinding.ListItemExpenseBinding
 

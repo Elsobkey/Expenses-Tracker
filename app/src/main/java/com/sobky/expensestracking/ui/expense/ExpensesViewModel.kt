@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.viewmodels
+package com.sobky.expensestracking.ui.expense
 
 import android.util.Log
 import androidx.lifecycle.LiveData

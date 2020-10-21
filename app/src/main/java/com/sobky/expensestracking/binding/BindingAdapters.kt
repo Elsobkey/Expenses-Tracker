@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sobky.expensestracking.adapters
+package com.sobky.expensestracking.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter

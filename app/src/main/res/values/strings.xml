@@ -21,7 +21,7 @@
     <string name="str_hint_market_address">market address…</string>
 
     <!--labels...-->
-    <string name="str_title_lbl">Item title</string>
+    <string name="str_item_title_lbl">Item title</string>
     <string name="str_amount_lbl">Amount</string>
     <string name="str_price_lbl">Price</string>
     <string name="str_category_lbl">Category</string>
@@ -40,5 +40,7 @@
     <string name="str_search_lbl">Search</string>
     <string name="str_add_new_expense_lbl">New expense</string>
     <string name="str_add_new_expense_item_lbl">New expense item</string>
+    <string name="str_add_new_expense_item_btn">Add new item…</string>
     <string name="str_show_items_by_category_lbl">Show by Category</string>
+    <string name="str_title_lbl">Title…</string>
 </resources>

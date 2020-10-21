@@ -1,11 +1,11 @@
-package com.sobky.expensestracking.workers
+package com.sobky.expensestracking.worker
 
 import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.sobky.expensestracking.data.db.AppDatabase
-import com.sobky.expensestracking.util.CATEGORY_DATA
+import com.sobky.expensestracking.utils.CATEGORY_DATA
 
 class CategoryDBWorker(
     context: Context,

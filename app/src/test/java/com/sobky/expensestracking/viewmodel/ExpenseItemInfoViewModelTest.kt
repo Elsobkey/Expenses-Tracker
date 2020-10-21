@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.viewmodels
+package com.sobky.expensestracking.viewmodel
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,7 +12,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-import org.mockito.Mockito.verify
 
 class ExpenseItemInfoViewModelTest {
 

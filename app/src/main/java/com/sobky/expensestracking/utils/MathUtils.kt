@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.util
+package com.sobky.expensestracking.utils
 
 import kotlin.math.pow
 import kotlin.math.roundToInt

@@ -16,8 +16,8 @@ import com.sobky.expensestracking.data.db.dao.ExpensesDao
 import com.sobky.expensestracking.data.db.entity.Category
 import com.sobky.expensestracking.data.db.entity.Expense
 import com.sobky.expensestracking.data.db.entity.ExpenseItem
-import com.sobky.expensestracking.util.DATABASE_NAME
-import com.sobky.expensestracking.workers.CategoryDBWorker
+import com.sobky.expensestracking.utils.DATABASE_NAME
+import com.sobky.expensestracking.worker.CategoryDBWorker
 
 
 /**

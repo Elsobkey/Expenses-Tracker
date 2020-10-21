@@ -2,6 +2,7 @@ package com.sobky.expensestracking.data.repository
 
 import androidx.lifecycle.LiveData
 import com.sobky.expensestracking.data.db.dao.ExpenseItemsDao
+import com.sobky.expensestracking.data.db.entity.Expense
 import com.sobky.expensestracking.data.db.entity.ExpenseItem
 import com.sobky.expensestracking.data.db.relation.ExpenseItemAndCategory
 
@@ -30,7 +31,15 @@ class ExpenseItemsRepository private constructor(private val dao: ExpenseItemsDa
         return dao.deleteExpenseItem(expenseItem)
     }
 
- companion object {
+    suspend fun getExpense(id: Long): Expense {
+        return dao.getExpense(id)
+    }
+
+    suspend fun updateExpense(expense: Expense): Int {
+        return dao.updateExpense(expense)
+    }
+
+    companion object {
 
         // For singleton instantiation
         @Volatile
