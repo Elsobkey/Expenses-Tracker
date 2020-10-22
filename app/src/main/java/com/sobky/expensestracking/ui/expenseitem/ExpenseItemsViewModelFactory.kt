@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sobky.expensestracking.data.repository.CategoryRepository
 import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
+import com.sobky.expensestracking.data.repository.ExpenseRepository
 
 /**
  * Factory for creating a [ExpenseItemsViewModel] with a constructor that takes a
@@ -11,16 +12,14 @@ import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
  */
 class ExpenseItemsViewModelFactory(
     val expenseId: Long,
-    private val repository: ExpenseItemsRepository,
-    private val categoryRepository: CategoryRepository
+    private val repository: ExpenseRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ExpenseItemsViewModel(
             expenseId,
-            repository,
-            categoryRepository
+            repository
         ) as T
     }
 }

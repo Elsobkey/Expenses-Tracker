@@ -17,7 +17,7 @@ class DeleteExpenseItemWorker(
     override suspend fun doWork(): Result =
         try {
             val deletedRows = AppDatabase.getInstance(applicationContext)
-                .expenseItemsDao().deleteAllEmptyExpenseItems()
+                .expenseDao().deleteAllEmptyExpenseItems()
             Log.v(TAG, "Deletion is ok & no. of deleted rows is $deletedRows")
             Result.success()
         } catch (ex: Exception) {

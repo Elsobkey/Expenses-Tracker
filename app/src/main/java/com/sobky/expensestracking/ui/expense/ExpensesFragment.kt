@@ -56,12 +56,13 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
         viewModel.expenses.observe(viewLifecycleOwner) { expensesList ->
             adapter.submitList(expensesList)
         }
+        //TODO: When on resume to this fragment delete empty expense also in expense itme fragment...
     }
 
     override fun onClick(v: View?) {
         if ((v == (binding.fabAddNewExpense))) {
             //showExpenseTitleDialog()
-            val direction = ExpensesFragmentDirections.actionExpensesFragToExpenseItemsFrag(expenseId = 0,expenseTitle = "")
+            val direction = ExpensesFragmentDirections.actionExpensesFragToExpenseItemsFrag(expenseId = 0)
             findNavController().navigate(direction)
 
         }

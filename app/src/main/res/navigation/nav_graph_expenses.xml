@@ -40,11 +40,6 @@
             android:defaultValue="0L"
             app:argType="long" />
 
-        <argument
-            android:name="expense_title"
-            android:defaultValue=""
-            app:argType="string" />
-
     </fragment>
 
     <fragment

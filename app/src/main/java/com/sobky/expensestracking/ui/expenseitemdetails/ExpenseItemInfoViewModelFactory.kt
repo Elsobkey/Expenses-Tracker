@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sobky.expensestracking.data.repository.CategoryRepository
 import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
+import com.sobky.expensestracking.data.repository.ExpenseRepository
 
 /**
  * Factory for creating a [ExpenseItemInfoViewModel] with a constructor that takes a
@@ -12,7 +13,7 @@ import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
 class ExpenseItemInfoViewModelFactory(
     private var expenseId: Long,
     var expenseItemId: Long,
-    private val repository: ExpenseItemsRepository,
+    private val repository: ExpenseRepository,
     private val categoryRepository: CategoryRepository
 ) :
     ViewModelProvider.Factory {

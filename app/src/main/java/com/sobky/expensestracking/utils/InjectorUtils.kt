@@ -1,13 +1,12 @@
 package com.sobky.expensestracking.utils
 
 import android.content.Context
-import com.sobky.expensestracking.data.repository.CategoryRepository
-import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
-import com.sobky.expensestracking.data.repository.ExpensesRepository
 import com.sobky.expensestracking.data.db.AppDatabase
-import com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModelFactory
-import com.sobky.expensestracking.ui.expenseitem.ExpenseItemsViewModelFactory
+import com.sobky.expensestracking.data.repository.CategoryRepository
+import com.sobky.expensestracking.data.repository.ExpenseRepository
 import com.sobky.expensestracking.ui.expense.ExpensesViewModelFactory
+import com.sobky.expensestracking.ui.expenseitem.ExpenseItemsViewModelFactory
+import com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModelFactory
 
 
 /**
@@ -15,18 +14,11 @@ import com.sobky.expensestracking.ui.expense.ExpensesViewModelFactory
  */
 object InjectorUtils {
 
-    private fun getExpenseRepository(context: Context): ExpensesRepository {
-        return ExpensesRepository.getInstance(
+    private fun getExpenseRepository(context: Context): ExpenseRepository {
+        return ExpenseRepository.getInstance(
             AppDatabase.getInstance(context.applicationContext).expenseDao()
         )
     }
-
-    private fun getExpenseItemsRepository(context: Context): ExpenseItemsRepository {
-        return ExpenseItemsRepository.getInstance(
-            AppDatabase.getInstance(context).expenseItemsDao()
-        )
-    }
-
 
     private fun getCategoryRepository(context: Context): CategoryRepository {
         return CategoryRepository.getInstance(
@@ -49,8 +41,7 @@ object InjectorUtils {
     ): ExpenseItemsViewModelFactory {
         return ExpenseItemsViewModelFactory(
             expenseId,
-            getExpenseItemsRepository(context),
-            getCategoryRepository(context)
+            getExpenseRepository(context)
         )
     }
 
@@ -62,7 +53,7 @@ object InjectorUtils {
         return ExpenseItemInfoViewModelFactory(
             expenseId,
             expenseItemId,
-            getExpenseItemsRepository(context),
+            getExpenseRepository(context),
             getCategoryRepository(context)
         )
     }

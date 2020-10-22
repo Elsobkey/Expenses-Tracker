@@ -51,7 +51,7 @@ class ExpensesViewHolder(val binding: ListItemExpenseBinding) :
     ) {
         Log.v(TAG, "navigate" + expense.expense.id)
         val direction = ExpensesFragmentDirections
-            .actionExpensesFragToExpenseItemsFrag(expense.expense.id, expense.expense.expensesTitle)
+            .actionExpensesFragToExpenseItemsFrag(expense.expense.id)
         view.findNavController().navigate(direction)
     }
 

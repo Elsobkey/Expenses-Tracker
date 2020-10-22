@@ -12,7 +12,7 @@ import androidx.work.WorkManager
 import com.sobky.expensestracking.data.db.converter.Converters
 import com.sobky.expensestracking.data.db.dao.CategoryDao
 import com.sobky.expensestracking.data.db.dao.ExpenseItemsDao
-import com.sobky.expensestracking.data.db.dao.ExpensesDao
+import com.sobky.expensestracking.data.db.dao.ExpenseDao
 import com.sobky.expensestracking.data.db.entity.Category
 import com.sobky.expensestracking.data.db.entity.Expense
 import com.sobky.expensestracking.data.db.entity.ExpenseItem
@@ -31,8 +31,7 @@ import com.sobky.expensestracking.worker.CategoryDBWorker
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun expenseDao(): ExpensesDao
-    abstract fun expenseItemsDao(): ExpenseItemsDao
+    abstract fun expenseDao(): ExpenseDao
     abstract fun categoryDao(): CategoryDao
 
     companion object {

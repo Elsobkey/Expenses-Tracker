@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import com.sobky.expensestracking.data.db.dao.ExpenseDao
 import com.sobky.expensestracking.data.db.entity.Expense
 import com.sobky.expensestracking.data.db.entity.ExpenseItem
+import com.sobky.expensestracking.data.db.relation.ExpenseAndExpenseItems
 import com.sobky.expensestracking.data.db.relation.ExpenseItemAndCategory
 
-/**
- * Repository module for handling data operations.
- */
-@Deprecated("use [ExpenseRepository] instead")
-class ExpenseItemsRepository private constructor(private val dao: ExpenseDao) {
+class ExpenseRepository private constructor(private val dao: ExpenseDao) {
+
+    fun getExpenses(): LiveData<List<ExpenseAndExpenseItems>> {
+        return dao.getExpenseAndExpenseItems()
+    }
 
     suspend fun createExpense(expense: Expense): Long {
         return dao.insertExpense(expense)
@@ -44,16 +45,18 @@ class ExpenseItemsRepository private constructor(private val dao: ExpenseDao) {
         return dao.updateExpense(expense)
     }
 
+
     companion object {
 
         // For singleton instantiation
         @Volatile
-        private var instance: ExpenseItemsRepository? = null
+        private var instance: ExpenseRepository? = null
 
-        fun getInstance(expenseDao: ExpenseDao) =
+        fun getInstance(expensesDao: ExpenseDao) =
             instance ?: synchronized(this) {
-                instance ?: ExpenseItemsRepository(expenseDao).also { instance = it }
+                instance ?: ExpenseRepository(expensesDao).also {
+                    instance = it
+                }
             }
     }
 }
-

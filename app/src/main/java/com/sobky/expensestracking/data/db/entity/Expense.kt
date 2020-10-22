@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "Expense")
 data class Expense(
-    @ColumnInfo(name = "expensesTitle") var expensesTitle: String = "",
+    @ColumnInfo(name = "expensesTitle") var expenseTitle: String = "",
     @ColumnInfo(name = "expensesDate") val expensesDate: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "userId") val userId: String = "154887" //TODO
 ) {
@@ -17,7 +17,7 @@ data class Expense(
     var id: Long = 0
 
     override fun toString(): String {
-        return expensesTitle
+        return expenseTitle
     }
 
 }
