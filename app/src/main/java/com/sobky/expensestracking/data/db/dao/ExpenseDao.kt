@@ -47,8 +47,17 @@ interface ExpenseDao {
     @Delete
     suspend fun deleteExpenseItem(expenseItem: ExpenseItem): Int
 
+    @Delete
+    suspend fun deleteExpense(expenseItem: Expense): Int
+
     @Query("SELECT * FROM Expense WHERE id =:id")
-    suspend  fun getExpense(id: Long): Expense
+    suspend fun getExpense(id: Long): Expense
+
+    @Query("SELECT * FROM Expense WHERE id =:id")
+    suspend fun getExpenseAndExpenseItems(id: Long): ExpenseAndExpenseItems
+
+    @Query("SELECT * FROM Expense WHERE ID = (SELECT MAX(ID)  FROM Expense)")
+     fun getLatestCreatedExpense(): LiveData<ExpenseAndExpenseItems>
 
     @Update
     suspend fun updateExpense(expense: Expense): Int

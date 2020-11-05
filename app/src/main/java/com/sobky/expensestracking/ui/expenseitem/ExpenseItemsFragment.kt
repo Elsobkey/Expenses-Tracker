@@ -10,6 +10,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sobky.expensestracking.ExpenseActivity
+import com.sobky.expensestracking.ExpensesApp
 import com.sobky.expensestracking.R
 import com.sobky.expensestracking.databinding.FragmentExpenseItemsBinding
 import com.sobky.expensestracking.utils.InjectorUtils
@@ -38,6 +39,7 @@ class ExpenseItemsFragment : Fragment() {
         // if it was already created expense just set its title, else create new one expense...
         viewModel.currentExpense.observe(viewLifecycleOwner) { expense ->
             binding.etExpenseItemsExpenseTitle.setText(expense.expenseTitle)
+            (requireActivity() as ExpenseActivity).currentExpenseId = expense.id
         }
 
         (requireActivity() as ExpenseActivity).setHomeButtonEnabled(true)
@@ -49,7 +51,6 @@ class ExpenseItemsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.tvAddNewExpenseItem.setOnClickListener {
             onAddNewExpenseItemFabClicked()
@@ -88,15 +89,9 @@ class ExpenseItemsFragment : Fragment() {
         }
     }
 
+
     companion object {
         const val TAG: String = "ExpenseItemsFragment"
-
-
-        fun newInstance(param1: String, param2: String) =
-            ExpenseItemsFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -107,6 +102,11 @@ class ExpenseItemsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             findNavController().navigateUp()
+//            viewModel.currentExpense.value?.let {
+//                val navDirection = ExpenseItemsFragmentDirections
+//                    .actionExpenseItemsFragmentBackToExpenseFrag(expenseId = it.id)
+//                findNavController().navigate(navDirection)
+//            } ?: findNavController().navigateUp() // expense may be not created yet.
             return true
         }
         return super.onOptionsItemSelected(item)

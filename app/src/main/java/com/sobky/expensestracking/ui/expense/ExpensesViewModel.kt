@@ -1,33 +1,64 @@
 package com.sobky.expensestracking.ui.expense
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sobky.expensestracking.data.repository.ExpenseRepository
 import com.sobky.expensestracking.data.db.entity.Expense
+import com.sobky.expensestracking.data.db.entity.ExpenseItem
 import com.sobky.expensestracking.data.db.relation.ExpenseAndExpenseItems
+import com.sobky.expensestracking.data.repository.ExpenseRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ExpensesViewModel(var repository: ExpenseRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
-
     val expenses: LiveData<List<ExpenseAndExpenseItems>> = repository.getExpenses()
 
-    fun createExpense(expenseTitle:String) {
-        viewModelScope.launch {
-            val createdExpenseId:Long = repository.createExpense(Expense(expenseTitle, userId = "1"))
-            Log.v(TAG, createdExpenseId.toString())
+    // check if current expense has empty data (if expense or expenseItem in expenseItems list has any data, so it was rich not empty)
+    private val _isEmptyExpense: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isEmptyExpenseObservable: LiveData<Boolean>
+        get() = _isEmptyExpense
+
+    fun isEmptyExpense(expenseId: Long) {
+        if (expenseId > 0) {
+            viewModelScope.launch {
+                val expense: ExpenseAndExpenseItems? =
+                    repository.getExpenseAndExpenseItems(expenseId)
+                expense?.let {
+                    _isEmptyExpense.value = checkIfExpenseHasEmptyData(expense)
+                }
+            }
         }
     }
 
-companion object{
-    const val TAG = "ExpensesViewModel"
-}
+    private fun checkIfExpenseHasEmptyData(expense: ExpenseAndExpenseItems): Boolean {
+        var emptyExpense = expense.expense.expenseTitle.trim().isEmpty()
+        if (emptyExpense) {
+            if (!expense.expenseItems.isNullOrEmpty()) {
+                for (expenseItem in expense.expenseItems) {
+                    if (ExpenseItem.isRichExpenseItem(expenseItem)) {
+                        emptyExpense = false
+                        break
+                    }
+                }
+            }
+        }
+        return emptyExpense
+    }
 
+    fun deleteExpense(expenseId: Long) {
+        var deletedRows = 0
+        viewModelScope.launch {
+            val expense: Expense? = repository.getExpense(expenseId)
+            expense?.let {
+                deletedRows = repository.deleteExpense(expense)
+            }
+        }
+        _isEmptyExpense.value = false
+    }
+
+    companion object {
+        const val TAG = "ExpensesViewModel"
+    }
 }

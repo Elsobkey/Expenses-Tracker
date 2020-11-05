@@ -33,12 +33,24 @@ class ExpenseRepository private constructor(private val dao: ExpenseDao) {
         return dao.updateExpenseItem(expenseItem)
     }
 
+    suspend fun deleteExpense(expense: Expense): Int {
+        return dao.deleteExpense(expense)
+    }
+
     suspend fun deleteExpenseItem(expenseItem: ExpenseItem): Int {
         return dao.deleteExpenseItem(expenseItem)
     }
 
     suspend fun getExpense(id: Long): Expense {
         return dao.getExpense(id)
+    }
+
+   fun getLatestCreatedExpense(): LiveData<ExpenseAndExpenseItems> {
+        return dao.getLatestCreatedExpense()
+    }
+
+    suspend fun getExpenseAndExpenseItems(id: Long): ExpenseAndExpenseItems {
+        return dao.getExpenseAndExpenseItems(id)
     }
 
     suspend fun updateExpense(expense: Expense): Int {

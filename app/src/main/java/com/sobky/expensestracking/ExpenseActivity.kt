@@ -9,6 +9,12 @@ import com.sobky.expensestracking.utils.updateStatusBarColor
 
 class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
 
+    /** the current expense id that was shared via all fragments that attached to [ExpenseActivity]
+     * react as the expense that selected from the expenses list
+     * or new created expense
+     */
+    var currentExpenseId = 0L
+
     private var binding: ActivityExpenseBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +31,7 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
         binding?.tvToolBarTile?.text = title
     }
 
-    fun setHomeButtonEnabled(enabled:Boolean){
+    fun setHomeButtonEnabled(enabled: Boolean) {
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(enabled)

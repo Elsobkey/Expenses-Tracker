@@ -72,4 +72,8 @@ data class ExpenseAndExpenseItems(
         }
         return expenseItemsTitlesSummary.toString()
     }
+
+    fun ExpenseAndExpenseItems.emptyExpense(expenseAndExpenseItems: ExpenseAndExpenseItems): String{
+       return "f"
+    }
 }

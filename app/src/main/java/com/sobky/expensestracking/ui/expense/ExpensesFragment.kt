@@ -1,19 +1,15 @@
 package com.sobky.expensestracking.ui.expense
 
-//import androidx.lifecycle.observe
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.DataBindingUtil
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sobky.expensestracking.ExpenseActivity
 import com.sobky.expensestracking.R
-import com.sobky.expensestracking.databinding.DialogTitleViewBinding
+import com.sobky.expensestracking.data.db.relation.ExpenseAndExpenseItems
 import com.sobky.expensestracking.databinding.FragmentExpensesBinding
 import com.sobky.expensestracking.utils.InjectorUtils
 
@@ -40,9 +36,22 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //(requireActivity() as ExpenseActivity).setToolbarTitle(getString(R.string.app_name))
-        val adapter = ExpensesAdapter()
+        val adapter = ExpensesAdapter(object : ExpensesAdapter.ExpenseCallback {
+            override fun onExpenseClicked(expense: ExpenseAndExpenseItems) {
+                val expenseId = expense.expense.id
+                onExpenseItemClicked(expenseId)
+            }
+        })
+
         binding.rvExpenses.adapter = adapter
         subscribeUi(adapter)
+
+        // check if current expense has empty data
+        val currentExpenseId = (requireActivity() as ExpenseActivity).currentExpenseId
+        if (currentExpenseId > 0) {
+            viewModel.isEmptyExpense(currentExpenseId)
+            subscribeDeleteEmptyExpense()
+        }
     }
 
     override fun onResume() {
@@ -56,65 +65,47 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
         viewModel.expenses.observe(viewLifecycleOwner) { expensesList ->
             adapter.submitList(expensesList)
         }
-        //TODO: When on resume to this fragment delete empty expense also in expense itme fragment...
+    }
+
+    private fun subscribeDeleteEmptyExpense() {
+
+        viewModel.isEmptyExpenseObservable.observe(viewLifecycleOwner) { isEmpty ->
+            if (isEmpty) {
+                viewModel.deleteExpense((requireActivity() as ExpenseActivity).currentExpenseId)
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.str_discard_empty_expense_msg_),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     override fun onClick(v: View?) {
         if ((v == (binding.fabAddNewExpense))) {
-            //showExpenseTitleDialog()
-            val direction = ExpensesFragmentDirections.actionExpensesFragToExpenseItemsFrag(expenseId = 0)
+            val direction = ExpensesFragmentDirections
+                .actionExpensesFragToExpenseItemsFrag(expenseId = 0)
             findNavController().navigate(direction)
-
         }
     }
 
-    private fun showExpenseTitleDialog() {
-        val builder = MaterialAlertDialogBuilder(requireActivity())
-        builder.setTitle(getString(R.string.str_dlg_expense_title_lbl))
-        builder.setCancelable(true)
-
-        val dialogTitleViewBinding: DialogTitleViewBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(requireActivity()),
-            R.layout.dialog_title_view,
-            null,
-            false
-        )
-
-        // dialog message view
-        val dialogView: View = layoutInflater.inflate(R.layout.dialog_title_view, null)
-        builder.setView(dialogTitleViewBinding.root)
-
-        builder.setNegativeButton(getString(R.string.str_dlg_dismiss_lbl), null)
-        builder.setPositiveButton(getString(R.string.str_dlg_submit_lbl)) { dialog, _ ->
-            val expenseTitle: String = dialogTitleViewBinding.etDialogExpenseTitle.text.toString()
-            val navHostFragment: NavHostFragment =
-                requireActivity().supportFragmentManager.findFragmentById(R.id.frag_expenses) as NavHostFragment
-            val frag: ExpensesFragment =
-                navHostFragment.childFragmentManager.fragments[0] as ExpensesFragment
-            frag.createNewExpense(expenseTitle, dialog)
-        }
-
-        // show dialog...
-        builder.create().show()
-    }
-
-
-    private fun createNewExpense(expenseTitle: String, dialog: DialogInterface) {
-        viewModel.createExpense(expenseTitle)
-        dialog.dismiss()
-        // TODO navigate to expense items fragment...
+    private fun onExpenseItemClicked(expenseId: Long) {
+        val direction = ExpensesFragmentDirections
+            .actionExpensesFragToExpenseItemsFrag(expenseId = expenseId)
+        findNavController().navigate(direction)
+        //(requireActivity() as ExpenseActivity).currentExpenseId = expenseId
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_expense,menu)
+        inflater.inflate(R.menu.menu_expense, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
     }
 
-    companion object{
+    companion object {
         const val TAG = "ExpensesFragment"
     }
 }

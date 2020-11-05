@@ -1,6 +1,5 @@
 package com.sobky.expensestracking.ui.expense
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,8 @@ import com.sobky.expensestracking.databinding.ListItemExpenseBinding
 /**
  * Adapter for the [RecyclerView] in [com.sobky.expensestracking.ExpensesFragment].
  */
-class ExpensesAdapter : ListAdapter<ExpenseAndExpenseItems, RecyclerView.ViewHolder>(
-    ExpensesDiffCallback()
-) {
+class ExpensesAdapter(val expenseCallback: ExpenseCallback) : ListAdapter<ExpenseAndExpenseItems,
+        RecyclerView.ViewHolder>(ExpensesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ExpensesViewHolder(
@@ -33,57 +31,60 @@ class ExpensesAdapter : ListAdapter<ExpenseAndExpenseItems, RecyclerView.ViewHol
         (holder as ExpensesViewHolder).bind(expense)
     }
 
-}
+    interface ExpenseCallback {
+        fun onExpenseClicked(expense: ExpenseAndExpenseItems)
+    }
 
-class ExpensesViewHolder(val binding: ListItemExpenseBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    init {
-        binding.setClickListener { view ->
-            binding.expense?.let { expense ->
-                navigateToExpenseItems(expense, view)
+    internal inner class ExpensesViewHolder(val binding: ListItemExpenseBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener {
+                binding.expense?.let { expense ->
+                    expenseCallback.onExpenseClicked(expense)
+                    //navigateToExpenseItems(expense, view)
+                }
             }
         }
-    }
 
-    private fun navigateToExpenseItems(
-        expense: ExpenseAndExpenseItems,
-        view: View
-    ) {
-        Log.v(TAG, "navigate" + expense.expense.id)
-        val direction = ExpensesFragmentDirections
-            .actionExpensesFragToExpenseItemsFrag(expense.expense.id)
-        view.findNavController().navigate(direction)
-    }
+        fun bind(item: ExpenseAndExpenseItems) {
+            binding.apply {
+                binding.expense = item
+                executePendingBindings()
+            }
+        }
 
-    fun bind(item: ExpenseAndExpenseItems) {
-        binding.apply {
-            binding.expense = item
-            executePendingBindings()
+        private fun navigateToExpenseItems(
+            expense: ExpenseAndExpenseItems,
+            view: View
+        ) {
+            //Log.v(TAG, "navigate" + expense.expense.id)
+            val direction = ExpensesFragmentDirections
+                .actionExpensesFragToExpenseItemsFrag(expense.expense.id)
+            view.findNavController().navigate(direction)
         }
     }
-
 
     companion object {
         const val TAG = "ExpensesAdapter"
     }
-}
 
-private class ExpensesDiffCallback : DiffUtil.ItemCallback<ExpenseAndExpenseItems>() {
+    private class ExpensesDiffCallback : DiffUtil.ItemCallback<ExpenseAndExpenseItems>() {
 
-    override fun areItemsTheSame(
-        oldItem: ExpenseAndExpenseItems,
-        newItem: ExpenseAndExpenseItems
-    ): Boolean {
-        return oldItem.expense.id == newItem.expense.id
+        override fun areItemsTheSame(
+            oldItem: ExpenseAndExpenseItems,
+            newItem: ExpenseAndExpenseItems
+        ): Boolean {
+            return oldItem.expense.id == newItem.expense.id
+        }
+
+        override fun areContentsTheSame(
+            oldItem: ExpenseAndExpenseItems,
+            newItem: ExpenseAndExpenseItems
+        ): Boolean {
+            return oldItem == newItem
+        }
     }
-
-    override fun areContentsTheSame(
-        oldItem: ExpenseAndExpenseItems,
-        newItem: ExpenseAndExpenseItems
-    ): Boolean {
-        return oldItem == newItem
-    }
-
 }
 
 

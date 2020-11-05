@@ -29,19 +29,11 @@ open class ExpenseItem(
     @ColumnInfo(name = "lat") var lat: Double = 0.0,
     @ColumnInfo(name = "lng") var lng: Double = 0.0,
     @ColumnInfo(name = "expenseItemCreatedDate") var expenseItemCreatedDate: Calendar = Calendar.getInstance()
-) /*: ExpenseItemInterface*/ {
+) {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long = 0
-
-//    override fun setItemTitle(itemName: String) {
-//        this.expenseName = itemName
-//    }
-//
-//    override fun setExpenseId(id: Long) {
-//        this.expenseId = id
-//    }
 
 
     override fun toString(): String {
@@ -52,9 +44,21 @@ open class ExpenseItem(
                 "$amount and created date is " +
                 ExpenseItemInfoViewModel.dateFormat.format(expenseItemCreatedDate.time)
     }
-}
 
-//interface ExpenseItemInterface {
-//    fun setItemTitle(itemName: String)
-//     fun setExpenseId(id: Long)
-//}
+    companion object {
+        //TODO : make this function as extension function
+        fun isRichExpenseItem(expenseItem: ExpenseItem): Boolean {
+            return (expenseItem.expenseName.trim().isNotEmpty()
+                    || expenseItem.price.trim().isNotEmpty()
+                    || expenseItem.amount.trim().isNotEmpty()
+                    || expenseItem.amount.trim().isNotEmpty()
+                    || expenseItem.categoryId > 0
+                    || expenseItem.unitId.trim().isNotEmpty()
+                    || expenseItem.description.trim().isNotEmpty()
+                    || expenseItem.placeName.trim().isNotEmpty()
+                    || expenseItem.placeAddress.trim().isNotEmpty()
+                    || expenseItem.lat > 0
+                    || expenseItem.lng > 0)
+        }
+    }
+}
