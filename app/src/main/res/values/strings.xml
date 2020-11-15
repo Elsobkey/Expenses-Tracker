@@ -44,4 +44,6 @@
     <string name="str_show_items_by_category_lbl">Show by Category</string>
     <string name="str_title_lbl">Title…</string>
     <string name="str_discard_empty_expense_msg_">Empty note discarded</string>
+    <string name="str_expense_items_lbl">Items</string>
+    <string name="str_item_info_lbl">Item Details</string>
 </resources>

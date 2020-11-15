@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModel" />
+            type="com.sobky.expensestracking.ui.expenseiteminfo.ExpenseItemInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,28 +206,28 @@
                         android:text="@{viewModel.expenseItem.placeAddress}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:id="@+id/tv_expense_item_info_market_coordinates_lbl"-->
-<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:hint="@string/str_market_coordinates_lbl"-->
-<!--                    android:textColor="@color/color_black"-->
-<!--                    android:textSize="15sp"-->
-<!--                    app:layout_constraintBottom_toTopOf="@id/layout_expense_item_info_date"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_market_address">-->
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    android:id="@+id/tv_expense_item_info_market_coordinates_lbl"-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:layout_marginBottom="5dp"-->
+                <!--                    android:hint="@string/str_market_coordinates_lbl"-->
+                <!--                    android:textColor="@color/color_black"-->
+                <!--                    android:textSize="15sp"-->
+                <!--                    app:layout_constraintBottom_toTopOf="@id/layout_expense_item_info_date"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/tv_expense_item_info_market_address">-->
 
-<!--                    <com.google.android.material.textfield.TextInputEditText-->
-<!--                        android:id="@+id/tv_expense_item_info_lat_lng"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:padding="10dp"-->
-<!--                        android:text="@{Double.toString(viewModel.expenseItem.lat) + `, `+Double.toString(viewModel.expenseItem.lng) }" />-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
+                <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                <!--                        android:id="@+id/tv_expense_item_info_lat_lng"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="@{Double.toString(viewModel.expenseItem.lat) + `, `+Double.toString(viewModel.expenseItem.lng) }" />-->
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_expense_item_info_date"

@@ -11,7 +11,7 @@ import com.sobky.expensestracking.data.repository.ExpenseRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ExpensesViewModel(var repository: ExpenseRepository) : ViewModel() {
+class ExpenseViewModel(var repository: ExpenseRepository) : ViewModel() {
 
     val expenses: LiveData<List<ExpenseAndExpenseItems>> = repository.getExpenses()
 

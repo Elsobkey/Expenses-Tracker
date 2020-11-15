@@ -10,7 +10,6 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sobky.expensestracking.ExpenseActivity
-import com.sobky.expensestracking.ExpensesApp
 import com.sobky.expensestracking.R
 import com.sobky.expensestracking.databinding.FragmentExpenseItemsBinding
 import com.sobky.expensestracking.utils.InjectorUtils
@@ -42,8 +41,9 @@ class ExpenseItemsFragment : Fragment() {
             (requireActivity() as ExpenseActivity).currentExpenseId = expense.id
         }
 
+        // update toolbar home button and title...
         (requireActivity() as ExpenseActivity).setHomeButtonEnabled(true)
-        (requireActivity() as ExpenseActivity).setToolbarTitle("")
+        (requireActivity() as ExpenseActivity).setToolbarTitle(getString(R.string.str_expense_items_lbl))
 
         setHasOptionsMenu(true) // showing option menu in this fragment
         return binding.root

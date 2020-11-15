@@ -1,4 +1,4 @@
-package com.sobky.expensestracking.ui.expenseitemdetails
+package com.sobky.expensestracking.ui.expenseiteminfo
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -20,7 +20,8 @@ import com.sobky.expensestracking.R
 import com.sobky.expensestracking.data.db.entity.Category
 import com.sobky.expensestracking.databinding.FragmentExpenseItemInfoBinding
 import com.sobky.expensestracking.utils.InjectorUtils
-import kotlinx.coroutines.*
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -47,8 +48,10 @@ class ExpenseItemInfoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // update toolbar home button and title...
         (requireActivity() as ExpenseActivity).setHomeButtonEnabled(true)
-        (requireActivity() as ExpenseActivity).setToolbarTitle("")
+        (requireActivity() as ExpenseActivity).setToolbarTitle(getString(R.string.str_item_info_lbl))
 
         binding = FragmentExpenseItemInfoBinding.inflate(
             inflater,
@@ -73,7 +76,7 @@ class ExpenseItemInfoFragment : Fragment() {
         setupObserver()
         addViewsObserver()
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
 
         }
     }
@@ -85,20 +88,20 @@ class ExpenseItemInfoFragment : Fragment() {
         viewModel.categories.observe(viewLifecycleOwner) { categoriesList ->
             setSpinnerAdapter(categories = categoriesList)
             viewModel.expenseItem?.observe(viewLifecycleOwner) {
-                    if (it == null) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Null expense item while creating",
-                            LENGTH_SHORT
-                        ).show()
-                        findNavController().navigateUp()
-                        return@observe
-                    }
-                    binding.viewModel = viewModel
-                    setSpinnerAdapter(selectedCategoryId = it.categoryId)
+                if (it == null) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Null expense item while creating",
+                        LENGTH_SHORT
+                    ).show()
+                    findNavController().navigateUp()
+                    return@observe
                 }
+                binding.viewModel = viewModel
+                setSpinnerAdapter(selectedCategoryId = it.categoryId)
             }
         }
+    }
 
 
     private fun setSpinnerAdapter(

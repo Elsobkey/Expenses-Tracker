@@ -1,9 +1,8 @@
-package com.sobky.expensestracking.ui.expenseitemdetails
+package com.sobky.expensestracking.ui.expenseiteminfo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sobky.expensestracking.data.repository.CategoryRepository
-import com.sobky.expensestracking.data.repository.ExpenseItemsRepository
 import com.sobky.expensestracking.data.repository.ExpenseRepository
 
 /**

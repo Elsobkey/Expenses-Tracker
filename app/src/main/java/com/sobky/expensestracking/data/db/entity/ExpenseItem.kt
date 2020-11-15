@@ -1,7 +1,7 @@
 package com.sobky.expensestracking.data.db.entity
 
 import androidx.room.*
-import com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModel
+import com.sobky.expensestracking.ui.expenseiteminfo.ExpenseItemInfoViewModel
 import java.util.*
 
 @Entity(

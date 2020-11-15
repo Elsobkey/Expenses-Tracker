@@ -13,12 +13,12 @@ import com.sobky.expensestracking.data.db.relation.ExpenseAndExpenseItems
 import com.sobky.expensestracking.databinding.FragmentExpensesBinding
 import com.sobky.expensestracking.utils.InjectorUtils
 
-class ExpensesFragment : Fragment(), View.OnClickListener {
+class ExpenseFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentExpensesBinding
 
-    private val viewModel: ExpensesViewModel by viewModels {
-        InjectorUtils.provideExpensesViewModelFactory(requireActivity())
+    private val viewModel: ExpenseViewModel by viewModels {
+        InjectorUtils.provideExpenseViewModelFactory(requireActivity())
     }
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //(requireActivity() as ExpenseActivity).setToolbarTitle(getString(R.string.app_name))
-        val adapter = ExpensesAdapter(object : ExpensesAdapter.ExpenseCallback {
+        val adapter = ExpenseAdapter(object : ExpenseAdapter.ExpenseCallback {
             override fun onExpenseClicked(expense: ExpenseAndExpenseItems) {
                 val expenseId = expense.expense.id
                 onExpenseItemClicked(expenseId)
@@ -61,7 +61,7 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
         (requireActivity() as ExpenseActivity).setToolbarTitle(getString(R.string.app_name))
     }
 
-    private fun subscribeUi(adapter: ExpensesAdapter) {
+    private fun subscribeUi(adapter: ExpenseAdapter) {
         viewModel.expenses.observe(viewLifecycleOwner) { expensesList ->
             adapter.submitList(expensesList)
         }
@@ -83,14 +83,14 @@ class ExpensesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if ((v == (binding.fabAddNewExpense))) {
-            val direction = ExpensesFragmentDirections
+            val direction = ExpenseFragmentDirections
                 .actionExpensesFragToExpenseItemsFrag(expenseId = 0)
             findNavController().navigate(direction)
         }
     }
 
     private fun onExpenseItemClicked(expenseId: Long) {
-        val direction = ExpensesFragmentDirections
+        val direction = ExpenseFragmentDirections
             .actionExpensesFragToExpenseItemsFrag(expenseId = expenseId)
         findNavController().navigate(direction)
         //(requireActivity() as ExpenseActivity).currentExpenseId = expenseId

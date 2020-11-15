@@ -4,9 +4,9 @@ import android.content.Context
 import com.sobky.expensestracking.data.db.AppDatabase
 import com.sobky.expensestracking.data.repository.CategoryRepository
 import com.sobky.expensestracking.data.repository.ExpenseRepository
-import com.sobky.expensestracking.ui.expense.ExpensesViewModelFactory
+import com.sobky.expensestracking.ui.expense.ExpenseViewModelFactory
 import com.sobky.expensestracking.ui.expenseitem.ExpenseItemsViewModelFactory
-import com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoViewModelFactory
+import com.sobky.expensestracking.ui.expenseiteminfo.ExpenseItemInfoViewModelFactory
 
 
 /**
@@ -27,10 +27,10 @@ object InjectorUtils {
     }
 
 
-    fun provideExpensesViewModelFactory(
+    fun provideExpenseViewModelFactory(
         context: Context
-    ): ExpensesViewModelFactory {
-        return ExpensesViewModelFactory(
+    ): ExpenseViewModelFactory {
+        return ExpenseViewModelFactory(
             getExpenseRepository(context)
         )
     }

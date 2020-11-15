@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.sobky.expensestracking.utils.updateStatusBarColor
-import com.sobky.expensestracking.worker.DeleteExpenseItemWorker
 
 class SplashActivity : AppCompatActivity() {
 
@@ -18,8 +15,8 @@ class SplashActivity : AppCompatActivity() {
         updateStatusBarColor(this)
 
         // at start of application make sure that there are no empty expense items
-        val request = OneTimeWorkRequestBuilder<DeleteExpenseItemWorker>().build()
-        WorkManager.getInstance(this@SplashActivity).enqueue(request)
+        //val request = OneTimeWorkRequestBuilder<DeleteExpenseItemWorker>().build()
+        // WorkManager.getInstance(this@SplashActivity).enqueue(request)
 
         Handler(Looper.myLooper()!!).postDelayed(
             {

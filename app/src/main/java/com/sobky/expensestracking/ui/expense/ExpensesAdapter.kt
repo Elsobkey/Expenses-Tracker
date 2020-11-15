@@ -13,7 +13,7 @@ import com.sobky.expensestracking.databinding.ListItemExpenseBinding
 /**
  * Adapter for the [RecyclerView] in [com.sobky.expensestracking.ExpensesFragment].
  */
-class ExpensesAdapter(val expenseCallback: ExpenseCallback) : ListAdapter<ExpenseAndExpenseItems,
+class ExpenseAdapter(val expenseCallback: ExpenseCallback) : ListAdapter<ExpenseAndExpenseItems,
         RecyclerView.ViewHolder>(ExpensesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -59,7 +59,7 @@ class ExpensesAdapter(val expenseCallback: ExpenseCallback) : ListAdapter<Expens
             view: View
         ) {
             //Log.v(TAG, "navigate" + expense.expense.id)
-            val direction = ExpensesFragmentDirections
+            val direction = ExpenseFragmentDirections
                 .actionExpensesFragToExpenseItemsFrag(expense.expense.id)
             view.findNavController().navigate(direction)
         }

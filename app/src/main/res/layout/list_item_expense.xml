@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -44,23 +45,25 @@
                 android:layout_marginEnd="20dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{expense.expense.expenseTitle}"
+                android:text="@{expense.expense.expenseTitle.trim()}"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Expense Title Here" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_list_item_expense_items_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="4"
+                android:paddingStart="4dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="0dp"
                 android:text='@{expense.getFormattedExpenseItemsTitles() }'
                 android:textSize="15sp"
-                android:paddingStart="4dp"
-                android:paddingEnd="0dp"
-                android:paddingTop="6dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_list_item_expense_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_list_item_expense_title"
+                tools:text="Expense item 1 \nExpense Item 2 \n..." />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textview.MaterialTextView
@@ -71,7 +74,8 @@
             android:textColor="@color/color_red_old"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="285$" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

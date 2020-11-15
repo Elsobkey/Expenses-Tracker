@@ -19,7 +19,7 @@ interface ExpenseDao {
      */
     //@Transaction
     //@Query("SELECT * FROM Expense WHERE id IN (SELECT DISTINCT(expenseId) FROM ExpenseItem)")
-    @Query("SELECT * FROM Expense")
+    @Query("SELECT * FROM Expense order by expensesDate desc")
     fun getExpenseAndExpenseItems(): LiveData<List<ExpenseAndExpenseItems>>
 
     @Query("SELECT * FROM ExpenseItem where categoryId = :categoryId")
@@ -31,7 +31,7 @@ interface ExpenseDao {
     @Query("SELECT * FROM ExpenseItem")
     fun getExpenseItems(): LiveData<List<ExpenseItem>>
 
-    @Query("SELECT * FROM ExpenseItem WHERE expenseId = :id") // ignore items with empty data
+    @Query("SELECT * FROM ExpenseItem WHERE expenseId = :id order by expenseItemCreatedDate desc") // ignore items with empty data
     //@Query("SELECT * FROM ExpenseItem WHERE expenseId = :id and (expenseName != '' OR (AMOUNT != '' AND (AMOUNT > 0)) OR (price != '' AND price > 0) OR placeName != '' OR PlaceAddress != '' OR description != '')")
     fun getExpenseItems(id: Long): LiveData<List<ExpenseItemAndCategory>>
 
@@ -57,7 +57,7 @@ interface ExpenseDao {
     suspend fun getExpenseAndExpenseItems(id: Long): ExpenseAndExpenseItems
 
     @Query("SELECT * FROM Expense WHERE ID = (SELECT MAX(ID)  FROM Expense)")
-     fun getLatestCreatedExpense(): LiveData<ExpenseAndExpenseItems>
+    fun getLatestCreatedExpense(): LiveData<ExpenseAndExpenseItems>
 
     @Update
     suspend fun updateExpense(expense: Expense): Int

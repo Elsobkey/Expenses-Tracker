@@ -4,26 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
     app:startDestination="@+id/frag_expenses">
-
+    <!-- TODO: add these animations is must
+    https://developer.android.com/training/basics/fragments/animate-->
     <fragment
         android:id="@+id/frag_expenses"
-        android:name="com.sobky.expensestracking.ui.expense.ExpensesFragment"
+        android:name="com.sobky.expensestracking.ui.expense.ExpenseFragment"
         android:label="@string/title_expenses"
         tools:layout="@layout/fragment_expenses">
 
         <action
             android:id="@+id/action_expenses_frag_to_expense_items_frag"
             app:destination="@id/expenseItemsFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/expenseItemInfoFragment" />
 
-<!--        <argument-->
-<!--            android:name="expense_id"-->
-<!--            android:defaultValue="0L"-->
-<!--            app:argType="long" />-->
+        <!--        app:enterAnim="@anim/fragment_open_enter"-->
+        <!--        app:exitAnim="@anim/fragment_open_exit"-->
+        <!--        app:popEnterAnim="@anim/fragment_open_enter"-->
+        <!--        app:popExitAnim="@anim/fragment_open_exit"-->
+
+        <!--        <argument-->
+        <!--            android:name="expense_id"-->
+        <!--            android:defaultValue="0L"-->
+        <!--            app:argType="long" />-->
     </fragment>
 
     <fragment
@@ -35,31 +37,30 @@
         <action
             android:id="@+id/action_expense_item_fragment_to_expense_item_info_fragment"
             app:destination="@id/expenseItemInfoFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/expenseItemInfoFragment" />
-
+        <!--     app:enterAnim="@anim/fragment_open_enter"
+                    app:exitAnim="@anim/fragment_open_exit"
+                    app:popEnterAnim="@anim/fragment_open_enter"
+                    app:popExitAnim="@anim/fragment_open_exit"-->
         <argument
             android:name="expense_id"
             android:defaultValue="0L"
             app:argType="long" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_expense_items_fragment_back_to_expense_frag"-->
-<!--            app:destination="@id/frag_expenses"-->
-<!--            app:enterAnim="@anim/fragment_open_enter"-->
-<!--            app:exitAnim="@anim/fragment_open_exit"-->
-<!--            app:popEnterAnim="@anim/fragment_open_enter"-->
-<!--            app:popExitAnim="@anim/fragment_open_exit"-->
-<!--            app:popUpTo="@id/frag_expenses" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_expense_items_fragment_back_to_expense_frag"-->
+        <!--            app:destination="@id/frag_expenses"-->
+        <!--            app:enterAnim="@anim/fragment_open_enter"-->
+        <!--            app:exitAnim="@anim/fragment_open_exit"-->
+        <!--            app:popEnterAnim="@anim/fragment_open_enter"-->
+        <!--            app:popExitAnim="@anim/fragment_open_exit"-->
+        <!--            app:popUpTo="@id/frag_expenses" />-->
 
     </fragment>
 
     <fragment
         android:id="@+id/expenseItemInfoFragment"
-        android:name="com.sobky.expensestracking.ui.expenseitemdetails.ExpenseItemInfoFragment"
+        android:name="com.sobky.expensestracking.ui.expenseiteminfo.ExpenseItemInfoFragment"
         android:label="@string/title_expense_item_info"
         tools:layout="@layout/fragment_expense_item_info">
 

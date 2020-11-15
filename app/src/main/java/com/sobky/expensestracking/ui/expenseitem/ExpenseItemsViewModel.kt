@@ -43,12 +43,11 @@ class ExpenseItemsViewModel internal constructor(
                 //Log.v(TAG,"expense is now  ${expense.toString()} instead of $expenseTitleOld")
                 repository.updateExpense(it)
             }
-            //Log.v(TAG,"updated successfully")
         }
     }
 
     private val coroutineExceptionHandler =
-        CoroutineExceptionHandler { coroutineContext, throwable ->
+        CoroutineExceptionHandler { _, throwable ->
             Log.v(TAG, "Exception caught", throwable)
         }
 

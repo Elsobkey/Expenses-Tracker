@@ -30,6 +30,15 @@ fun bindIsGone(view: View, isGone: Boolean) {
     }
 }
 
+@BindingAdapter("isInVisible")
+fun bindIsInVisible(view: View, isInVisible: Boolean) {
+    view.visibility = if (isInVisible) {
+        View.INVISIBLE
+    } else {
+        View.VISIBLE
+    }
+}
+
 //@BindingAdapter("android:text")
 //fun formatText(editText: TextInputEditText, number: Double) {
 //    //editText.setText(number.toString())
