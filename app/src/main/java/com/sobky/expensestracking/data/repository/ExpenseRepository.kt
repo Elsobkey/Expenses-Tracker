@@ -57,6 +57,9 @@ class ExpenseRepository private constructor(private val dao: ExpenseDao) {
         return dao.updateExpense(expense)
     }
 
+    fun getTotalExpensePrice(expenseId:Long): LiveData<ExpenseItem.ExpenseItemTotalPrice> {
+        return dao.getTotalExpensePrice(expenseId)
+    }
 
     companion object {
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sobky.expensestracking.data.db.entity.Expense
+import com.sobky.expensestracking.data.db.entity.ExpenseItem
 import com.sobky.expensestracking.data.db.relation.ExpenseItemAndCategory
 import com.sobky.expensestracking.data.repository.ExpenseRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -24,6 +25,9 @@ class ExpenseItemsViewModel internal constructor(
 
     val expenseItems: LiveData<List<ExpenseItemAndCategory>>
         get() = repository.getExpenseItems(expenseId)
+
+    val expenseTotalPrice: LiveData<ExpenseItem.ExpenseItemTotalPrice>
+            get() = repository.getTotalExpensePrice(expenseId)
 
     init {
         viewModelScope.launch {

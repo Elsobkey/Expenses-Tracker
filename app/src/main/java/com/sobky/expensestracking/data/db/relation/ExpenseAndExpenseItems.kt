@@ -1,5 +1,6 @@
 package com.sobky.expensestracking.data.db.relation
 
+import androidx.annotation.Nullable
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.sobky.expensestracking.data.db.entity.Expense
@@ -15,18 +16,11 @@ data class ExpenseAndExpenseItems(
     val expense: Expense,
 
     @Relation(parentColumn = "id", entityColumn = "expenseId")
-    val expenseItems: List<ExpenseItem> = emptyList()
+    val expenseItems: List<ExpenseItem> = emptyList(),
 
+//    @Nullable
+//    val totalExpensePrice: Double = 0.0
 ) {
-    /** Get total price for each item price and round it to integer number */
-    fun getExpenseTotalPrice(): Int {
-        var totalExpensePrice = 0.0
-        for (expenseLine in expenseItems) {
-            if (expenseLine.price.isNotEmpty())
-                totalExpensePrice += expenseLine.price.toDouble()
-        }
-        return totalExpensePrice.roundToInt()
-    }
 
     /** get first 3 items of expense items with limited item max length */
     fun getFormattedExpenseItemsTitles(): String {
@@ -35,8 +29,10 @@ data class ExpenseAndExpenseItems(
         if (expenseItems.isNotEmpty()) {
             for (i in expenseItems.indices) {
                 if (expenseItems[i].expenseName.trim().isNotEmpty()
-                    || (expenseItems[i].amount.trim().isNotEmpty() && expenseItems[i].amount.toDouble() > 0)
-                    || (expenseItems[i].price.trim().isNotEmpty() && expenseItems[i].price.toDouble() > 0)
+                    || (expenseItems[i].amount > 0
+                            && expenseItems[i].amount.toDouble() > 0)
+                    || (expenseItems[i].price > 0
+                            && expenseItems[i].price.toDouble() > 0)
                     || (expenseItems[i].placeName.trim().isNotEmpty())
                     || (expenseItems[i].placeAddress.trim().isNotEmpty())
                 ) {
@@ -71,9 +67,5 @@ data class ExpenseAndExpenseItems(
             }
         }
         return expenseItemsTitlesSummary.toString()
-    }
-
-    fun ExpenseAndExpenseItems.emptyExpense(expenseAndExpenseItems: ExpenseAndExpenseItems): String{
-       return "f"
     }
 }

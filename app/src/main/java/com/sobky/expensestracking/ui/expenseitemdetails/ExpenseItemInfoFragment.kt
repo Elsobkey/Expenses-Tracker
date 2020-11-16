@@ -149,7 +149,7 @@ class ExpenseItemInfoFragment : Fragment() {
 
         binding.etExpenseItemInfoAmount.doOnTextChanged { inputText, _, _, _ ->
             if (inputText.toString() != viewModel.expenseItem?.value?.amount.toString().trim()) {
-                viewModel.expenseItem?.value?.amount = inputText.toString()
+                viewModel.expenseItem?.value?.amount = inputText.toString().toDouble()
                 viewModel.updateExpenseItem()
             }
         }
@@ -165,7 +165,7 @@ class ExpenseItemInfoFragment : Fragment() {
 
         binding.etExpenseItemInfoPrice.doOnTextChanged { inputText, _, _, _ ->
             if (inputText.toString() != viewModel.expenseItem?.value?.price.toString().trim()) {
-                viewModel.expenseItem?.value?.price = inputText.toString()
+                viewModel.expenseItem?.value?.price = inputText.toString().toDouble()
                 viewModel.updateExpenseItem()
             }
         }

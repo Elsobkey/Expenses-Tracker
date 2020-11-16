@@ -19,8 +19,8 @@ import java.util.*
 open class ExpenseItem(
     @ColumnInfo(name = "expenseId") var expenseId: Long = 0, // The main expense header id (foreign key)
     @ColumnInfo(name = "expenseName") var expenseName: String = "",
-    @ColumnInfo(name = "price") var price: String = "",
-    @ColumnInfo(name = "amount") var amount: String = "",
+    @ColumnInfo(name = "price") var price: Double = 0.0,
+    @ColumnInfo(name = "amount") var amount: Double = 0.0,
     @ColumnInfo(name = "unitId") var unitId: String = "",
     @ColumnInfo(name = "categoryId") var categoryId: Int = 0, // category like (grocery, Gas, Clothes,...)
     @ColumnInfo(name = "description") var description: String = "",
@@ -49,9 +49,11 @@ open class ExpenseItem(
         //TODO : make this function as extension function
         fun isRichExpenseItem(expenseItem: ExpenseItem): Boolean {
             return (expenseItem.expenseName.trim().isNotEmpty()
-                    || expenseItem.price.trim().isNotEmpty()
-                    || expenseItem.amount.trim().isNotEmpty()
-                    || expenseItem.amount.trim().isNotEmpty()
+//                    || expenseItem.price().trim().isNotEmpty()
+//                    || expenseItem.amount.trim().isNotEmpty()
+//                    || expenseItem.amount.trim().isNotEmpty()
+                    || expenseItem.price > 0
+                    || expenseItem.amount > 0
                     || expenseItem.categoryId > 0
                     || expenseItem.unitId.trim().isNotEmpty()
                     || expenseItem.description.trim().isNotEmpty()
@@ -60,5 +62,8 @@ open class ExpenseItem(
                     || expenseItem.lat > 0
                     || expenseItem.lng > 0)
         }
+    }
+
+    data class ExpenseItemTotalPrice(var price: Double = 0.0) {
     }
 }

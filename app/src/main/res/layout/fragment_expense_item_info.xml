@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.sobky.expensestracking.ui.expenseiteminfo.ExpenseItemInfoViewModel" />
@@ -77,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
-                        android:text="@{viewModel.expenseItem.amount}" />
+                        android:text="@{``+viewModel.expenseItem.amount}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
-                        android:text="@{viewModel.expenseItem.price}" />
+                        android:text="@{``+viewModel.expenseItem.price }" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -177,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text|textNoSuggestions"
                         android:padding="10dp"
-                        android:text="@{viewModel.expenseItem.placeName}"/>
+                        android:text="@{viewModel.expenseItem.placeName}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -200,9 +201,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text|textMultiLine|textNoSuggestions"
-                        android:padding="10dp"
                         android:maxLines="3"
                         android:minLines="1"
+                        android:padding="10dp"
                         android:text="@{viewModel.expenseItem.placeAddress}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -248,12 +249,12 @@
                         android:id="@+id/tv_expense_item_info_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@{viewModel.expenseDateString()}"
                         android:cursorVisible="false"
                         android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:inputType="textNoSuggestions"
-                        android:focusableInTouchMode="false" />
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseDateString()}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -275,12 +276,12 @@
                         android:id="@+id/tv_expense_item_info_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@{viewModel.expenseTimeString()}"
                         android:cursorVisible="false"
                         android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:inputType="textNoSuggestions"
-                        android:focusableInTouchMode="false" />
+                        android:padding="10dp"
+                        android:text="@{viewModel.expenseTimeString()}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

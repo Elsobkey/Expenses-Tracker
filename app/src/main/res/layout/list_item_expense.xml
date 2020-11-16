@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.sobky.expensestracking.ui.expenseitem.Conv" />
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -70,7 +72,7 @@
             android:id="@+id/tv_list_item_expense_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text='@{expense.getExpenseTotalPrice() + "$"}'
+            android:text='@{``+ Conv.roundToInt(expense.expense.totalExpensePrice)}'
             android:textColor="@color/color_red_old"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="2"

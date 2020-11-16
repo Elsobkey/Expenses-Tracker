@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="com.sobky.expensestracking.ui.expenseitem.Conv" />
+
+        <variable
+            name="expenseTotalPrice"
+            type="java.lang.Double" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,43 +18,72 @@
         android:layout_marginEnd="6dp"
         android:background="@color/color_white">
 
-        <EditText
-            android:id="@+id/et_expense_items_expense_title"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_expense_items_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="@string/str_title_lbl"
-            android:imeOptions="actionDone"
-            android:inputType="text|textMultiLine"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
             android:paddingBottom="14dp"
-            android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/et_expense_items_expense_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/str_title_lbl"
+                android:imeOptions="actionDone"
+                android:inputType="text|textMultiLine"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_expense_items_total_item_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_expense_items_total_item_price"
+                isInVisible="@{expenseTotalPrice &lt;=0}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle"
+                android:maxLines="1"
+                android:paddingStart="7dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="3dp"
+                android:text="@{``+Conv.roundToInt(expenseTotalPrice)}"
+                android:textColor="@color/color_red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/et_expense_items_expense_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_expense_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_expense_items_expense_title" />
+            app:layout_constraintTop_toBottomOf="@id/layout_expense_items_header" />
 
         <TextView
             android:id="@+id/tv_add_new_expense_item"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
+            android:layout_marginStart="4dp"
             android:background="@color/color_white"
+            android:drawablePadding="3dp"
             android:gravity="center_vertical"
             android:text="@string/str_add_new_expense_item_btn"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_marginStart="4dp"
             app:drawableStartCompat="@drawable/ic_baseline_note_add_24"
-            android:drawablePadding="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_expense_items" />
 

@@ -13,6 +13,7 @@ import com.sobky.expensestracking.ExpenseActivity
 import com.sobky.expensestracking.R
 import com.sobky.expensestracking.databinding.FragmentExpenseItemsBinding
 import com.sobky.expensestracking.utils.InjectorUtils
+import kotlin.math.roundToInt
 
 class ExpenseItemsFragment : Fragment() {
 
@@ -60,6 +61,7 @@ class ExpenseItemsFragment : Fragment() {
         binding.rvExpenseItems.adapter = adapter
         subscribeUi(adapter)
         observeExpenseTitle()
+        subscribeExpenseTotalPrice()
     }
 
     private fun observeExpenseTitle() {
@@ -67,6 +69,12 @@ class ExpenseItemsFragment : Fragment() {
             if (inputText.toString() != viewModel.currentExpense.value?.expenseTitle) { //TODO
                 viewModel.updateExpenseTitle(inputText.toString())
             }
+        }
+    }
+
+    private fun subscribeExpenseTotalPrice() {
+        viewModel.expenseTotalPrice.observe(viewLifecycleOwner) {
+            binding.expenseTotalPrice = it.price
         }
     }
 

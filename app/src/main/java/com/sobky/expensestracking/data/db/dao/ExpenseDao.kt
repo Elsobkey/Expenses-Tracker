@@ -18,8 +18,14 @@ interface ExpenseDao {
      * the object mapping.
      */
     //@Transaction
-    //@Query("SELECT * FROM Expense WHERE id IN (SELECT DISTINCT(expenseId) FROM ExpenseItem)")
-    @Query("SELECT * FROM Expense order by expensesDate desc")
+//    @Query("SELECT * FROM Expense order by expensesDate desc")
+    @Query(
+        """
+         SELECT id, expensesDate, expensesTitle, userId,
+        (SELECT SUM(price) FROM ExpenseItem WHERE Expense.id = ExpenseItem.expenseId)
+         AS totalExpensePrice
+         FROM Expense order by Expense.expensesDate desc"""
+    )
     fun getExpenseAndExpenseItems(): LiveData<List<ExpenseAndExpenseItems>>
 
     @Query("SELECT * FROM ExpenseItem where categoryId = :categoryId")
@@ -34,6 +40,9 @@ interface ExpenseDao {
     @Query("SELECT * FROM ExpenseItem WHERE expenseId = :id order by expenseItemCreatedDate desc") // ignore items with empty data
     //@Query("SELECT * FROM ExpenseItem WHERE expenseId = :id and (expenseName != '' OR (AMOUNT != '' AND (AMOUNT > 0)) OR (price != '' AND price > 0) OR placeName != '' OR PlaceAddress != '' OR description != '')")
     fun getExpenseItems(id: Long): LiveData<List<ExpenseItemAndCategory>>
+
+    @Query("SELECT Sum(price) as price from ExpenseItem where expenseId = :expenseId")
+    fun getTotalExpensePrice(expenseId: Long): LiveData<ExpenseItem.ExpenseItemTotalPrice>
 
     @Query("SELECT * FROM ExpenseItem WHERE id =:id")
     fun getExpenseItem(id: Long): ExpenseItem
@@ -65,6 +74,6 @@ interface ExpenseDao {
     //@Query("DELETE FROM Expense WHERE (expensesTitle IS NULL OR expensesTitle = '') AND ((AMOUNT IS NULL OR AMOUNT = '') OR (AMOUNT <= 0)) AND ((price IS NULL OR price = '') OR (price <= 0)) AND (placeName IS NULL OR placeName = '') AND (PlaceAddress IS NULL OR PlaceAddress = '') AND  (description IS NULL OR description = '')")
     //suspend fun deleteAllEmptyExpense(): Int
 
-    @Query("DELETE FROM ExpenseItem WHERE (expenseName IS NULL OR expenseName = '') AND ((AMOUNT IS NULL OR AMOUNT = '') OR (AMOUNT <= 0)) AND ((price IS NULL OR price = '') OR (price <= 0)) AND (placeName IS NULL OR placeName = '') AND (PlaceAddress IS NULL OR PlaceAddress = '') AND  (description IS NULL OR description = '')")
-    suspend fun deleteAllEmptyExpenseItems(): Int
+    //@Query("DELETE FROM ExpenseItem WHERE (expenseName IS NULL OR expenseName = '') AND ((AMOUNT IS NULL OR AMOUNT = '') OR (AMOUNT <= 0)) AND ((price IS NULL OR price = '') OR (price <= 0)) AND (placeName IS NULL OR placeName = '') AND (PlaceAddress IS NULL OR PlaceAddress = '') AND  (description IS NULL OR description = '')")
+    //suspend fun deleteAllEmptyExpenseItems(): Int
 }
