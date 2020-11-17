@@ -3,6 +3,7 @@ package com.sobky.expensestracking.ui.expenseiteminfo
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -88,6 +89,7 @@ class ExpenseItemInfoFragment : Fragment() {
         viewModel.categories.observe(viewLifecycleOwner) { categoriesList ->
             setSpinnerAdapter(categories = categoriesList)
             viewModel.expenseItem?.observe(viewLifecycleOwner) {
+                Log.v(TAG,"entered")
                 if (it == null) {
                     Toast.makeText(
                         requireActivity(),
@@ -204,7 +206,8 @@ class ExpenseItemInfoFragment : Fragment() {
             expenseMonth = it.get(Calendar.MONTH)
             expenseDay = it.get(Calendar.DAY_OF_MONTH)
         }
-        val datePickerDialog = DatePickerDialog(
+
+        DatePickerDialog(
             requireActivity(),
             { _, year, monthOfYear, dayOfMonth ->
                 expenseYear = year
@@ -212,8 +215,9 @@ class ExpenseItemInfoFragment : Fragment() {
                 expenseDay = dayOfMonth
                 viewModel.updateExpenseCreatedDate(expenseYear, expenseMonth, expenseDay)
             }, expenseYear, expenseMonth, expenseDay
-        )
-        datePickerDialog.show()
+        ).also {
+            it.show()
+        }
     }
 
     private fun onExpenseCreatedTimeClicked() {
